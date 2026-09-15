@@ -36,13 +36,20 @@ async def on_ready():
 @bot.tree.command(name="hello", description="Greets the user")
 async def hello(interaction: discord.Interaction):
     """Basic slash command that greets the user"""
-    map = f"{WATER,WATER,WATER,WATER}\n{WATER,WATER,WATER,WATER}"
+    
+    current_map = []
+    for col in player_1:
+        current_map.append("\n")
+        for row in col:
+            current_map.append(row)
 
-    await interaction.response.send_message(map,ephemeral=True)
-    await interaction.response.send_message(f"Hello {interaction.user.mention}!",ephemeral=True)
+       
+
+            
+    await interaction.response.send_message(f"map\n{"".join(current_map)}",ephemeral=True)
 
 
 
 
 # Run the bot
-bot.run("Token_here")
+bot.run("TOKEN_HERE")
