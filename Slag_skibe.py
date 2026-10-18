@@ -1,24 +1,18 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-WATER = ":blue_square:"
-EMPTY = ":black_circle:"
-HIT = ":red_circle:"
-SHIP = "white_circle:"
+import Classes_andConstans
+from Classes_andConstans import BOARD_SIZE
 
-BOARD_SIZE = 10
 
-player_1 = [[WATER for cols in range(BOARD_SIZE)]for y in range(BOARD_SIZE)]
+player1 = Classes_andConstans.Player()
+
 
 # Initialize the bot
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
 
-def print_maps():
-    interaction: discord.Interaction
-    for tile in player_1:
-        for i in tile:
-            interaction.response.send_message(f"Hello {interaction.user.mention}!",ephemeral=True)
+
     
 # Create a slash command group
 @bot.event
@@ -32,22 +26,105 @@ async def on_ready():
 
 
 
-# Simple slash command
-@bot.tree.command(name="hello", description="Greets the user")
-async def hello(interaction: discord.Interaction):
+
+# function for open fire on enemy map.
+@bot.tree.command(
+        name= "fire",
+        description= "fire on enemy"
+)
+@app_commands.describe(
+        x= "is the coordinate for the x axes (choose a letter)",
+        y= " is the coordinate for the y axes (choose num)"
+)
+@app_commands.choices(
+    x=[
+    app_commands.Choice(name="a", value=0),
+    app_commands.Choice(name="b", value=1),
+    app_commands.Choice(name="c", value=2),
+    app_commands.Choice(name="d", value=3),
+    app_commands.Choice(name="e", value=4),
+    app_commands.Choice(name="c", value=5),
+    app_commands.Choice(name="g", value=6),
+    app_commands.Choice(name="h", value=7),
+    app_commands.Choice(name="i", value=8),
+    app_commands.Choice(name="j", value=9),],
+    y=[
+        app_commands.Choice(name="1", value=0),
+        app_commands.Choice(name="2", value=1),
+        app_commands.Choice(name="3", value=2),
+        app_commands.Choice(name="4", value=3),
+        app_commands.Choice(name="5", value=4),
+        app_commands.Choice(name="6", value=5),
+        app_commands.Choice(name="7", value=6),
+        app_commands.Choice(name="8", value=7),
+        app_commands.Choice(name="9", value=8),
+        app_commands.Choice(name="10", value=9),]    
+    )
+async def fire(
+    interaction: discord.Interaction,
+    x : int,
+    y : int
+    ):
+    await interaction.response.send_message(f"you fire at ({x};{y})",ephemeral=True)
+
+
+
+
+# test hvordan en knap sættes op
+@bot.tree.command(
+        name="tester",
+        description="tester")
+async def tester(
+    interaction: discord.Interaction
+    ):
+    # add the view to a message
+    await interaction.response.send_message("tester", view=Classes_andConstans.MyView())
+
+
+
+
+@bot.tree.command(
+        name = "battleships",
+        description = "choose players for the game and start")
+@app_commands.describe(
+    player1 = "The first player",
+    player2 = "The second player"
+)
+async def battleships_get_players(
+    interaction: discord.Interaction,
+    player1: discord.Member,
+    player2: discord.Member
+    ):
+    await player1.send(f"Do you join? Play battleships with {player2.name}")
+    #await player2.send_message(f"Do you join? Play battleships with {player1.name}")
+    await interaction.response.send_message(f'You selected player 1 = {player1.name} player 2 = {player2.name}.',ephemeral=True)
+
+
+# Simple slash command (slag skibe skal være med lille s.)
+@bot.tree.command(
+        name="slagskib",
+        description="Prints map"
+        )
+async def slagskibe(interaction: discord.Interaction):
     """Basic slash command that greets the user"""
     
-    current_map = []
-    for col in player_1:
+    current_map = ["\n| a  | b  | c  | d  | e  | f  | g  | h  | i  | j  |"]
+    row_num = 0
+    for col in player1.own_map:
+        
+        if row_num > 0:
+
+            current_map.append(" |"+str(row_num))
+
         current_map.append("\n")
+
+        row_num = row_num + 1
+
         for row in col:
             current_map.append(row)
-
-       
-
-            
-    await interaction.response.send_message(f"map\n{"".join(current_map)}",ephemeral=True)
-
+    
+    current_map.append(" |"+str(BOARD_SIZE))
+    await interaction.response.send_message(f"map{"".join(current_map)}",ephemeral=True)
 
 
 
