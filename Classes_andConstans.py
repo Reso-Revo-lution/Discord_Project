@@ -15,7 +15,9 @@ class Player:
         self.own_map = [[WATER for cols in range(self.BOARD_SIZE)]for rows in range(self.BOARD_SIZE)]
         self.enemy_map = [[WATER for cols in range(self.BOARD_SIZE)]for rows in range(self.BOARD_SIZE)]
 
+board = {
     
+}    
 
 #Custom View Class (experiment fra hjemmeside til at lave en knap)
 class MyView(discord.ui.View):

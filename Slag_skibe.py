@@ -67,6 +67,42 @@ async def fire(
     ):
     await interaction.response.send_message(f"you fire at ({x};{y})",ephemeral=True)
 
+@bot.tree.command(
+        name= "place",
+        description= "Place your ships on the board"
+)
+
+@app_commands.choices(
+    x=[
+    app_commands.Choice(name="a", value="a"),
+    app_commands.Choice(name="b", value="b"),
+    app_commands.Choice(name="c", value="c"),
+    app_commands.Choice(name="d", value="d"),
+    app_commands.Choice(name="e", value="e"),
+    app_commands.Choice(name="c", value="f"),
+    app_commands.Choice(name="g", value="g"),
+    app_commands.Choice(name="h", value="h"),
+    app_commands.Choice(name="i", value="i"),
+    app_commands.Choice(name="j", value="j"),],
+    y=[
+        app_commands.Choice(name="1", value=0),
+        app_commands.Choice(name="2", value=1),
+        app_commands.Choice(name="3", value=2),
+        app_commands.Choice(name="4", value=3),
+        app_commands.Choice(name="5", value=4),
+        app_commands.Choice(name="6", value=5),
+        app_commands.Choice(name="7", value=6),
+        app_commands.Choice(name="8", value=7),
+        app_commands.Choice(name="9", value=8),
+        app_commands.Choice(name="10", value=9),]    
+    )
+
+async def place(
+    interaction: discord.Interaction,
+    x : str,
+    y : int
+    ):
+    await interaction.response.send_message(f"You placed your ship at [{x}:{y+1}]",ephemeral=True)
 
 
 
@@ -79,8 +115,6 @@ async def tester(
     ):
     # add the view to a message
     await interaction.response.send_message("tester", view=Classes_andConstans.MyView())
-
-
 
 
 @bot.tree.command(
@@ -129,4 +163,4 @@ async def slagskibe(interaction: discord.Interaction):
 
 
 # Run the bot
-bot.run("TOKEN_HERE")
+bot.run("MTU0MzkwODQ4NTk0NTg4NDY5NA.GA0PjC.vl86ryC4GjifR73dc_OCqrfcabBDAewuRj7m7c")
