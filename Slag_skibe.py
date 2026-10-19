@@ -163,4 +163,4 @@ async def slagskibe(interaction: discord.Interaction):
 
 
 # Run the bot
-bot.run("MTU0MzkwODQ4NTk0NTg4NDY5NA.GA0PjC.vl86ryC4GjifR73dc_OCqrfcabBDAewuRj7m7c")
+bot.run("Token here")
