@@ -12,7 +12,13 @@ player1 = Classes_andConstans.Player()
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
 
+TOK_FILE = "Token.txt"
 
+def get_token():
+  tokfile = open(TOK_FILE, 'r')
+  token = tokfile.read()
+  tokfile.close()
+  return token
     
 # Create a slash command group
 @bot.event
@@ -71,7 +77,6 @@ async def fire(
         name= "place",
         description= "Place your ships on the board"
 )
-
 @app_commands.choices(
     x=[
     app_commands.Choice(name="a", value="a"),
@@ -161,6 +166,6 @@ async def slagskibe(interaction: discord.Interaction):
     await interaction.response.send_message(f"map{"".join(current_map)}",ephemeral=True)
 
 
-
+token = get_token()
 # Run the bot
-bot.run("Token here")
+bot.run(token)
