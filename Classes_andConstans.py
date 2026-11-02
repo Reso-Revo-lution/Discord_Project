@@ -12,12 +12,29 @@ SHIP = "white_circle:"
 class Player:
     def __init__(self):
         self.BOARD_SIZE = 10
-        self.own_map = [[WATER for cols in range(self.BOARD_SIZE)]for rows in range(self.BOARD_SIZE)]
-        self.enemy_map = [[WATER for cols in range(self.BOARD_SIZE)]for rows in range(self.BOARD_SIZE)]
+        self.own_map = [[WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#1
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#2
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#3
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#4
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#5
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#6
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#7
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#8
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#9
+                        [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],
+                        ]
+        self.enemy_map = [[WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#1
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#2
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#3
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#4
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#5
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#6
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#7
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#8
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#9
+                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],
+                         ]
 
-board = {
-    
-}    
 
 #Custom View Class (experiment fra hjemmeside til at lave en knap)
 class MyView(discord.ui.View):
