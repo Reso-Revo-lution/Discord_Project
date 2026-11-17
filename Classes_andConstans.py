@@ -1,17 +1,17 @@
 import discord
-import numpy
+
 
 BOARD_SIZE = 10
 WATER = ":blue_square:"
 EMPTY = ":black_circle:"
 HIT = ":red_circle:"
-SHIP = "white_circle:"
+SHIP = ":white_circle:"
 
 
 
 class Player:
-    def __init__(self):
-        self.BOARD_SIZE = 10
+    def __init__(self, member):
+        self.member = member
         self.own_map = [[WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#1
                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#2
                         [WATER,WATER,WATER,WATER,WATER, WATER,WATER,WATER,WATER,WATER],#3
@@ -36,17 +36,33 @@ class Player:
                          ]
 
 
+
+
+
+
+
+
+
+
 #Custom View Class (experiment fra hjemmeside til at lave en knap)
 class MyView(discord.ui.View):
-    def __init__(self):
+    def __init__(self, player1, player2):
+        self.player1 = player1
+        self.player2 = player2
         super().__init__()
+        
 
     #setting up button (you can add multiple such)
-    @discord.ui.button(label='test', style=discord.ButtonStyle.grey)
-    async def asdf(self, interaction: discord.Interaction, button: discord.ui.Button):
+    @discord.ui.button(label='yes', style=discord.ButtonStyle.green)
+    async def yes_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         # on interaction
-        await interaction.response.send_message('workie', ephemeral=True)
-        print("yes")
+        await self.player1.send('The other player said yes')
+        
+    @discord.ui.button(label='no', style=discord.ButtonStyle.red)
+    async def no_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        # on interaction
+        await interaction.response.send_message('NO!')
+        print("no")
 
 
     
